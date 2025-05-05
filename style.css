@@ -137,8 +137,17 @@ main {
     display: flex;
     flex-direction: column;
     height: 160px;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 0 2%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: 2%;
+    border: #868888 1px solid;
+}
+
+.test{
+    height: 24px;
+    width: auto;
 }
 
 footer {
