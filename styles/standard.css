@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+table td b {
+    font-weight: bold;
+}
+
+.like {
+    font-weight: bold;
+}
+
+.like_button {
+    content: url(../assets/img/heart_black.png);
+    width: 48px;
+}
+
+.like_button:hover {
+    cursor: pointer;
+}
+
+.like_button_pressed {
+    content: url(../assets/img/heart_red.png);
+    width: 48px;
+}
+
+.like_button_pressed:hover {
+    cursor: pointer;
+}
+
+input {
+    background-color: #167091;
+    border: 0;
+    border-bottom: 2px solid #1C8ADB;
+    width: 100%;
+    color: white;
+}
+
+.send_button {
+    content: url(../assets/img/paper-airplane-1513032_1280.png);
+    width: 36px;
+}
+
+.send_button:hover {
+    cursor: pointer;
+}
+
+
+@media (max-width: 600px) {
+
+    .header_container h1 {
+        display: none;
+    }
+
+    .header_container h4 {
+        display: none;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .price {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .like_counter {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .info {
+        gap: 8px;
+    }
+
+    .info_text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    table {
+        display: flex;
+        flex-direction: column;
+    }
+
+    table tr {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .writen_comments {
+        gap: 16px;
+    }
+
+    .comments_field {
+        flex-direction: column;
+    }
+
+    .left {
+        flex: 0;
+    }
+
+    .right {
+        flex: 0;
+    }
+}
