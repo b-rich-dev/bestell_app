@@ -22,9 +22,83 @@
     <link rel="stylesheet" href="./styles/font.css">
     <link rel="stylesheet" href="./styles/standard.css">
     <link rel="stylesheet" href="./styles/basket.css">
+    <link rel="stylesheet" href="./styles/assets.css">
 </head>
 
-<body>
+<body onload="init()">
+    <header>
+        <a href="./index.html">
+            <img src="./assets/logo/Bestell App- Logo.svg" alt="Bestell App Logo">
+        </a>
+        <img src="./assets/img/menu_icon.png" alt="Menü" onclick="toggleMenu()" class="menu_icon">
+    </header>
+    <main>
+        <div id="toast">Deine Bestellung wurde ans Restaurant weitergeleitet!</div>
+        <div class="content_wrapper">
+            <section id="content" class="content">
+                <img class="pizza_oven_img" src="./assets/img/pizza_oven.jpg" alt="Pizzaofen">
+                <div class="pizza_center">
+                    <img class="round_pizza_img" src="./assets/img/pizza_salami_2.jpg" alt="Pizza">
+                </div>
+                <div class="restaurant_info">
+                    <h1>Pizza Paradies</h1>
+                    <a href="">Bewertung(4,2 von 5 Sternen)</a>
+                </div>
+                <div class="selection">
+                    <img src="./assets/img/arrow.png" alt="Pfeil nach rechts">
+                    <p>Vorspeisen</p>
+                    <p>Hauptgerichte</p>
+                    <p>Desserts</p>
+                </div>
+                <img class="food_img" src="./assets/img/carpaccio_1.jpg" alt="Vorspeisen Bild">
+                <h2 id="appetizer">Vorspeisen</h2>
+                <div id="food_container" class="food_container">
+                    <h3>Pizza Krabben</h3>
+                    <p>mit Krabben und Peperoni</p>
+                    <p>9,50€</p>
+                </div>
+                <div id="food_container" class="food_container"></div>
+                <div id="food_container" class="food_container"></div>
+                <img class="food_img" src="./assets/img/pizza_salami.jpg" alt="Pizza Bild">
+                <h2 id="main_course">Hauptgerichte</h2>
+                <div id="food_container" class="food_container"></div>
+                <div id="food_container" class="food_container"></div>
+                <div id="food_container" class="food_container"></div>
+                <img class="food_img" src="./assets/img/cannoli.jpg" alt="Dessert Bild">
+                <h2 id="desserts">Desserts</h2>
+                <div id="food_container" class="food_container"></div>
+                <div id="food_container" class="food_container"></div>
+                <div id="food_container" class="food_container"></div>
+            </section>
+            <section class="basket_wrapper">
+                <div class="basket">
+                    <h1>Warenkorb</h1>
+                    <div id="basket"></div>
+                    <div>
+                        <div>
+                            <p>Zwischensumme</p>
+                            <div></div>
+                            <p>€</p>
+                        </div>
+                        <div>
+                            <p>Lieferkosten</p>
+                            <p>5,00€</p>
+                        </div>
+                        <div><b>Gesamt</b>
+                            <div></div>
+                            <p>€</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <a href="./impressum.html">
+            <img src="./assets/logo/Bestell App- Logo.svg" alt="Bestell App Logo">
+        </a>
+        <a href="./impressum.html">Impressum</a>
+    </footer>
 
 </body>
 
