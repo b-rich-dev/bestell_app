@@ -96,12 +96,12 @@ body {
   
   body::-webkit-scrollbar-track {
     background: var(--sb-track-color);
-    border-radius: 2px;
+    border-radius: 0;
   }
   
   body::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
-    border-radius: 2px;
+    border-radius: 0;
     
   }
   

@@ -38,11 +38,11 @@ function getMainContent(i) {
                             <div id="basket" class="basket_item">
                                 <b>Pizza Placeholder</b>
                                 <div class="calc_zone">
-                                    <img onclick="" class="calc_icon" src="./assets/icon/minus.png" alt="Minus">
+                                    <img onclick="decreaseFromCard()" class="calc_icon" src="./assets/icon/minus.png" alt="Minus">
                                     <p>3x</p>
-                                    <img onclick="" class="calc_icon" src="./assets/icon/plus.png" alt="Plus">
+                                    <img onclick="addToCard()" class="calc_icon" src="./assets/icon/plus.png" alt="Plus">
                                     <p>25.50€</p>
-                                    <img onclick="" class="trash_icon" class="test" src="./assets/icon/trash.png" alt="Papierkorb">
+                                    <img onclick="deleteFromCart" class="trash_icon" class="test" src="./assets/icon/trash.png" alt="Papierkorb">
                                 </div>
                             </div>
                             <div class="sum_container">
@@ -65,7 +65,7 @@ function getMainContent(i) {
 
 
 function getAppetizerContent(i, j) {
-    return `<div class="food_item">
+    return `<div class="food_item" onclick="addToCard()">
                 <div class="food_item_container">
                     <img id="food_img" class="inner_food_img" src="${myDishes[i].appetizer[j].image}" alt="Appetizer">
                     <div class="food_text">
@@ -75,14 +75,14 @@ function getAppetizerContent(i, j) {
                     </div>
                 </div>
                 <div class="big_plus_container">
-                    <img class="big_plus" src="./assets/icon/plus.png" alt="Plus">
+                    <img onclick="addToCard()" class="big_plus" src="./assets/icon/plus.png" alt="Plus">
                 </div>
             </div>`;
 }
 
 
 function getMainCourseContent(i, j) {
-    return `<div class="food_item">
+    return `<div class="food_item" onclick="addToCard()">
                 <div class="food_item_container">
                     <img id="food_img" class="inner_food_img" src="${myDishes[i].mainCourse[j].image}" alt="Main Course">
                     <div class="food_text">
@@ -92,14 +92,14 @@ function getMainCourseContent(i, j) {
                     </div>
                 </div>
                 <div class="big_plus_container">
-                    <img class="big_plus" src="./assets/icon/plus.png" alt="Plus">
+                    <img onclick="addToCard()" class="big_plus" src="./assets/icon/plus.png" alt="Plus">
                 </div>
             </div>`;
 }
 
 
 function getDessertsContent(i, j) {
-    return `<div class="food_item">
+    return `<div class="food_item" onclick="addToCard()">
                 <div class="food_item_container">
                     <img id="food_img" class="inner_food_img" src="${myDishes[i].desserts[j].image}" alt="Desserts">
                     <div class="food_text">

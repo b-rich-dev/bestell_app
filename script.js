@@ -52,8 +52,19 @@ function renderDessertsContent() {
 }
 
 
+function addToCard() {
+    
+}
 
 
+function decreaseFromCard() {
+    
+}
+
+
+function deleteFromCart() {
+    
+}
 
 
 function myToast() {

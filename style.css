@@ -152,6 +152,10 @@ main {
     border: #868888 1px solid;
 }
 
+.food_item:hover {
+    cursor: pointer;
+}
+
 .food_item_container {
     display: flex;
 }

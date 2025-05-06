@@ -70,12 +70,13 @@ let myDishes = [
             }
         ]
     }
-]
+];
 
 
-let mybasket = []
+let myCart = [];
 
-let mytrash = []
+let myTrash = [];
 
-let mySubtotal = 0.00
-let mytotal = 0.00
+let mySubtotal = 0.00;
+
+let myTotal = mySubtotal + 5.00;
