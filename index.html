@@ -26,7 +26,7 @@
 </head>
 
 <body onload="init()">
-    <header>
+    <header id="start">
         <a href="./index.html">
             <img src="./assets/logo/Bestell App- Logo.svg" alt="Bestell App Logo">
         </a>
@@ -38,7 +38,7 @@
             <section id="content" class="content">
                 <img class="pizza_oven_img" src="./assets/img/pizza_oven.jpg" alt="Pizzaofen">
                 <div class="pizza_center">
-                    <img class="round_pizza_img" src="./assets/img/pizza_salami_2.jpg" alt="Pizza">
+                    <img class="round_pizza_img" src="./assets/img/limoncello_gelato.jpg" alt="Pizza">
                 </div>
                 <div class="restaurant_info">
                     <h1>Pizza Paradies</h1>
@@ -46,16 +46,24 @@
                 </div>
                 <div class="selection">
                     <img src="./assets/icon/arrow.png" alt="Pfeil nach rechts">
-                    <p>Vorspeisen</p>
-                    <p>Hauptgerichte</p>
-                    <p>Desserts</p>
+                    <a href="#appetizer">Vorspeisen</a>
+                    <a href="#main_course">Hauptgerichte</a>
+                    <a href="#desserts">Desserts</a>
                 </div>
                 <img class="food_img" src="./assets/img/carpaccio_1.jpg" alt="Vorspeisen Bild">
                 <h2 id="appetizer">Vorspeisen</h2>
                 <div id="food_container" class="food_container">
-                    <h3>Pizza Krabben</h3>
-                    <p>mit Krabben und Peperoni</p>
-                    <p>9,50€</p>
+                    <div class="food_item">
+                        <img class="inner_food_img" src="./assets/img/bruschetta.jpg" alt="Bruschetta">
+                        <div class="food_text">
+                            <h3>Pizza Krabben</h3>
+                            <p>mit Krabben und Peperoni</p>
+                            <p class="orange">9,50€</p>
+                        </div>
+                    </div>
+                    <div class="big_plus_container">
+                        <img class="big_plus" src="./assets/icon/plus.png" alt="Plus">
+                    </div>
                 </div>
                 <div id="food_container" class="food_container"></div>
                 <div id="food_container" class="food_container"></div>
@@ -73,22 +81,27 @@
             <section class="basket_wrapper">
                 <div class="basket">
                     <h1>Warenkorb</h1>
-                    <div id="basket">
-                        <img class="test" src="./assets/img/Designer.png" alt="">
-                    </div>
-                    <div>
-                        <div>
-                            <p>Zwischensumme</p>
-                            <div></div>
-                            <p>€</p>
+                    <div id="basket" class="basket_item">
+                        <b>Pizza Placeholder</b>
+                        <div class="calc_zone">
+                            <img onclick="" class="calc_icon" src="./assets/icon/minus.png" alt="Minus">
+                            <p>3x</p>
+                            <img onclick="" class="calc_icon" src="./assets/icon/plus.png" alt="Plus">
+                            <p>25.50€</p>
+                            <img onclick="" class="trash_icon" class="test" src="./assets/icon/trash.png" alt="Papierkorb">
                         </div>
-                        <div>
+                    </div>
+                    <div class="sum_container">
+                        <div class="sum">
+                            <p>Zwischensumme</p>
+                            <div class="flex"><p>500</p><p>€</p></div>
+                        </div>
+                        <div class="sum">
                             <p>Lieferkosten</p>
                             <p>5,00€</p>
                         </div>
-                        <div><b>Gesamt</b>
-                            <div></div>
-                            <p>€</p>
+                        <div class="sum"><b>Gesamt</b>
+                            <div><b>1000</b><b>€</b></div>
                         </div>
                     </div>
                 </div>
@@ -96,7 +109,7 @@
         </div>
     </main>
     <footer>
-        <a href="./impressum.html">
+        <a href="#start">
             <img src="./assets/logo/Bestell App- Logo.svg" alt="Bestell App Logo">
         </a>
         <a href="./impressum.html">Impressum</a>
