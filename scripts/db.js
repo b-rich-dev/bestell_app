@@ -1,6 +1,6 @@
 let myDishes = [
     {
-        "Vorspeisen": [
+        "appetizer": [
             {
                 "name": "Bruschetta",
                 "price": 6.90,
@@ -23,7 +23,7 @@ let myDishes = [
                 "amount": 0
             }
         ],
-        "Hauptgerichte": [
+        "main_course": [
             {
                 "name": "Pizza Margherita",
                 "price": 10.90,
@@ -46,7 +46,7 @@ let myDishes = [
                 "amount": 0
             }
         ],
-        "Desserts": [
+        "desserts": [
             {
                 "name": "Tiramisu",
                 "price": 7.90,
