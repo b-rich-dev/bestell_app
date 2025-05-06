@@ -108,11 +108,11 @@ main {
 
 .selection a {
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 600;
     color: #868888;
 }
 
-.food_container {
+/* .food_container {
     display: flex;
     height: 160px;
     justify-content: space-between;
@@ -120,6 +120,22 @@ main {
     margin-bottom: 24px;
     margin-left: 2%;
     border: #868888 1px solid;
+} */
+
+.food_container {
+    height: auto;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: 2%;
+    
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+#big_food_img {
+    clear: both;
 }
 
 .food_img {
@@ -131,6 +147,12 @@ main {
 }
 
 .food_item {
+    display: flex;
+    justify-content: space-between;
+    border: #868888 1px solid;
+}
+
+.food_item_container {
     display: flex;
 }
 
@@ -145,7 +167,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    padding-left: 16px;
+    padding-left: 24px;
 }
 
 .orange {
