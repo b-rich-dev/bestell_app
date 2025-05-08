@@ -68,15 +68,13 @@ let myDishes = [
                 "image": "./assets/img/limoncello_gelato.jpg",
                 "amount": 0
             }
-        ]
+        ],
+        "deliveryFee": 5,
     }
 ];
 
-
+let deliveryFee = myDishes[0].deliveryFee;
 let myCart = [];
 
 let myTrash = [];
 
-let mySubtotal = 0.00;
-
-let myTotal = mySubtotal + 5.00;

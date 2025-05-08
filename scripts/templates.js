@@ -1,4 +1,4 @@
-function getMainContent(i) {
+function getMainContent() {
     return `<div id="toast">Deine Bestellung wurde ans Restaurant weitergeleitet!</div>
                 <div class="content_wrapper">
                     <section id="content" class="content">
@@ -35,28 +35,11 @@ function getMainContent(i) {
                     <section class="basket_wrapper">
                         <div class="basket">
                             <h1>Warenkorb</h1>
-                            <div id="basket" class="basket_item">
-                                <b>Pizza Placeholder</b>
-                                <div class="calc_zone">
-                                    <img onclick="decreaseFromCard()" class="calc_icon" src="./assets/icon/minus.png" alt="Minus">
-                                    <p>3x</p>
-                                    <img onclick="addToCard()" class="calc_icon" src="./assets/icon/plus.png" alt="Plus">
-                                    <p>25.50€</p>
-                                    <img onclick="deleteFromCart" class="trash_icon" class="test" src="./assets/icon/trash.png" alt="Papierkorb">
-                                </div>
-                            </div>
-                            <div class="sum_container">
-                                <div class="sum">
-                                    <p>Zwischensumme</p>
-                                    <div class="flex"><p>500</p><p>€</p></div>
-                                </div>
-                                <div class="sum">
-                                    <p>Lieferkosten</p>
-                                    <p>5,00€</p>
-                                </div>
-                                <div class="sum"><b>Gesamt</b>
-                                    <div><b>1000</b><b>€</b></div>
-                                </div>
+                            <div id="cart_container">
+                                <div class="empty_cart">
+                                    <img src="./assets/img/bag.png" alt="Warenkorb">
+                                    <p>Wähle leckere Gerichte aus der Karte!</p>
+                                </div>    
                             </div>
                         </div>
                     </section>
@@ -65,7 +48,7 @@ function getMainContent(i) {
 
 
 function getAppetizerContent(i, j) {
-    return `<div class="food_item" onclick="addToCard()">
+    return `<div class="food_item" onclick="increaseAmount(${i}, ${j}, 'appetizer')">
                 <div class="food_item_container">
                     <img id="food_img" class="inner_food_img" src="${myDishes[i].appetizer[j].image}" alt="Appetizer">
                     <div class="food_text">
@@ -75,14 +58,14 @@ function getAppetizerContent(i, j) {
                     </div>
                 </div>
                 <div class="big_plus_container">
-                    <img onclick="addToCard()" class="big_plus" src="./assets/icon/plus.png" alt="Plus">
+                    <img class="big_plus" src="./assets/icon/plus.png" alt="Plus">
                 </div>
             </div>`;
 }
 
 
 function getMainCourseContent(i, j) {
-    return `<div class="food_item" onclick="addToCard()">
+    return `<div class="food_item" onclick="increaseAmount(${i}, ${j}, 'mainCourse')">
                 <div class="food_item_container">
                     <img id="food_img" class="inner_food_img" src="${myDishes[i].mainCourse[j].image}" alt="Main Course">
                     <div class="food_text">
@@ -92,14 +75,14 @@ function getMainCourseContent(i, j) {
                     </div>
                 </div>
                 <div class="big_plus_container">
-                    <img onclick="addToCard()" class="big_plus" src="./assets/icon/plus.png" alt="Plus">
+                    <img class="big_plus" src="./assets/icon/plus.png" alt="Plus">
                 </div>
             </div>`;
 }
 
 
 function getDessertsContent(i, j) {
-    return `<div class="food_item" onclick="addToCard()">
+    return `<div class="food_item" onclick="increaseAmount(${i}, ${j}, 'desserts')">
                 <div class="food_item_container">
                     <img id="food_img" class="inner_food_img" src="${myDishes[i].desserts[j].image}" alt="Desserts">
                     <div class="food_text">
@@ -112,4 +95,50 @@ function getDessertsContent(i, j) {
                     <img class="big_plus" src="./assets/icon/plus.png" alt="Plus">
                 </div>
             </div>`;
+}
+
+
+function getSelectedDishes(dish) {
+    return `<div id="basket" class="basket_item">
+                <b>${dish.name}</b>
+                <div class="calc_zone">
+                    <img onclick="removeOne('${dish.name}')" class="calc_icon" src="./assets/icon/minus.png" alt="Minus">
+                    <p>${dish.amount}x</p>
+                    <img onclick="addOne('${dish.name}')" class="calc_icon" src="./assets/icon/plus.png" alt="Plus">
+                    <p>${(dish.amount * dish.price).toFixed(2)}€</p>
+                    <img onclick="deleteAllFromCart()" class="trash_icon" class="test" src="./assets/icon/trash.png" alt="Papierkorb">
+                </div>
+            </div>`;
+}
+
+
+function getCosts(mySubtotal, deliveryFee, totalPrice) {
+    return `<div class="sum_container">
+                <div class="sum">
+                    <p>Zwischensumme</p>
+                    <p>${mySubtotal.toFixed(2)}€</p>
+                </div>
+                <div class="sum">
+                    <p>Lieferkosten</p>
+                    <p>${deliveryFee.toFixed(2)}€</p>
+                </div>
+                <div class="sum">
+                    <h3>Gesamt</h3>
+                    <h3>${totalPrice.toFixed(2)}€</h3>
+                </div>
+                <div class="order">
+                    <button onclick="sendOrder()">Bestellen!</button>
+                </div>
+
+            </div>`;
+}
+
+
+
+
+function getEmptyCart() {
+    return `<div class="empty_cart">
+                <img src="./assets/img/bag.png" alt="Warenkorb">
+                <p>Wähle leckere Gerichte aus der Karte!</p>
+            </div> `;
 }
