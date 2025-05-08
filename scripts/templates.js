@@ -142,3 +142,22 @@ function getEmptyCart() {
                 <p>Wähle leckere Gerichte aus der Karte!</p>
             </div> `;
 }
+
+
+function getImpressumContent() {
+    return `<div class="impressum_container">
+                <h1>Impressum</h1>
+
+                <p>Eugen Birich<br />
+                    Mittlauer Weg 36<br />
+                    63571 Gelnhausen</p>
+
+                <h2>Kontakt</h2>
+                <p>Telefon: 01751032571<br />
+                    E-Mail: lex8787@web.de</p>
+
+                <p>Quelle: <a href="https://www.e-recht24.de">e-recht24.de</a></p>
+                <p>Bildquellen und Urheberrechtshinweise:</p>
+                <p>Alle Bilder sind von Pixabay, Lizenz: Pixabay License</p>
+            </div>`
+}
