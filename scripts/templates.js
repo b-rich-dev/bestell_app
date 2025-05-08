@@ -4,7 +4,7 @@ function getMainContent() {
                     <section id="content" class="content">
                         <img class="pizza_oven_img" src="./assets/img/pizza_oven.jpg" alt="Pizzaofen">
                         <div class="pizza_center">
-                            <img class="round_pizza_img" src="./assets/img/limoncello_gelato.jpg" alt="Pizza">
+                            <img class="round_logo" src="./assets/img/pizza_logo.png" alt="Logo">
                         </div>
                         <div class="restaurant_info">
                             <h1>Pizza Paradies</h1>
@@ -35,7 +35,7 @@ function getMainContent() {
                     <section class="basket_wrapper">
                         <div class="basket">
                             <h1>Warenkorb</h1>
-                            <div id="cart_container">
+                            <div id="cart_container" class="cart_container">
                                 <div class="empty_cart">
                                     <img src="./assets/img/bag.png" alt="Warenkorb">
                                     <p>Wähle leckere Gerichte aus der Karte!</p>

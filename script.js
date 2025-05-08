@@ -84,7 +84,7 @@ function removeOne(dishName) {
             }
         }
     }
-    
+
 }
 
 
@@ -157,8 +157,10 @@ function renderCart() {
         }
     }
 
-    cartContent += getCosts(mySubtotal, deliveryFee, totalPrice) ;
+    cartContent += getCosts(mySubtotal, deliveryFee, totalPrice);
     document.getElementById('cart_container').innerHTML = cartContent;
+    const container = document.querySelector('.cart_container');
+    container.scrollTop = container.scrollHeight;
 }
 
 
