@@ -74,7 +74,3 @@ let myDishes = [
 ];
 
 let deliveryFee = myDishes[0].deliveryFee;
-let myCart = [];
-
-let myTrash = [];
-

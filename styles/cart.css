@@ -1,3 +1,18 @@
+.cart_container {
+    direction: rtl;
+    max-height: 396px;
+
+    overflow-y: auto;
+    --sb-track-color: #EAE4E3;
+    --sb-thumb-color: #FF8000;
+    --sb-size: 4px;
+
+    margin: 8px 0 8px px;
+
+    display: flex;
+    flex-direction: column;
+}
+
 .empty_cart{
     height: 324px;
     padding: 0 2% 0 2%;

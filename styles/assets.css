@@ -22,7 +22,7 @@
     /* Add a z-index if needed */
     right: 0px;
     /* Center the snackbar */
-    top: 258px;
+    top: 338px;
     /* 30px from the bottom */
 }
 
@@ -44,7 +44,7 @@
     }
 
     to {
-        top: 258px;
+        top: 338px;
         opacity: 1;
     }
 }
@@ -56,14 +56,14 @@
     }
 
     to {
-        top: 258px;
+        top: 338px;
         opacity: 1;
     }
 }
 
 @-webkit-keyframes fadeout {
     from {
-        top: 258px;
+        top: 338px;
         opacity: 1;
     }
 
@@ -75,7 +75,7 @@
 
 @keyframes fadeout {
     from {
-        top: 258px;
+        top: 338px;
         opacity: 1;
     }
 
@@ -113,20 +113,6 @@ body {
     }
   }
 
-  .cart_container {
-    direction: rtl;
-    height: 424px;
-
-    overflow-y: auto;
-    --sb-track-color: #EAE4E3;
-    --sb-thumb-color: #FF8000;
-    --sb-size: 4px;
-
-    margin: 8px 0 8px 1px;
-
-    display: flex;
-    flex-direction: column;
-}
 
 .cart_container > * {
     direction: ltr;

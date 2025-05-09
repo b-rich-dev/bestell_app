@@ -1,6 +1,6 @@
 function getMainContent() {
     return `<div id="toast">Deine Bestellung wurde ans Restaurant weitergeleitet!</div>
-            <div class="content_wrapper">
+            <div id="content_wrapper" class="content_wrapper">
                 <section id="content" class="content">
                     <img class="pizza_oven_img" src="./assets/img/pizza_oven.jpg" alt="Pizzaofen">
                     <div class="pizza_center">

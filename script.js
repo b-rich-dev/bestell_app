@@ -38,6 +38,13 @@ function renderFoodSelectionContent() {
 
 function increaseAmount(i, j, category) {
     myDishes[i][category][j].amount++;
+
+    const basket = document.querySelector('.basket_wrapper');
+
+    if (basket && basket.classList.contains('close')) {
+        toggleClasses();
+    }
+
     renderCart();
 }
 
@@ -180,24 +187,21 @@ function myToast() {
 //     basket.classList.toggle('close');
 //     content.classList.toggle('basket_close');
 // });
-const button = document.querySelector('#menu_button');
+function toggleClasses() {
+    const basket = document.querySelector('.basket_wrapper');
+    const wrapper = document.querySelector('.content_wrapper');
 
-if (button) {
-    button.addEventListener('click', () => {
-        const basket = document.querySelector('.basket_wrapper');
-        const wrapper = document.querySelector('.content_wrapper');
+    if (basket) {
+        basket.classList.toggle('fixed');
+        basket.classList.toggle('close');
+    }
 
-        if (basket) {
-            basket.classList.toggle('fixed');
-            basket.classList.toggle('close');
-        }
-
-        if (wrapper) {
-            wrapper.classList.toggle('basket_close');
-            basket.classList.toggle('sticky');
-        }
-    });
+    if (wrapper) {
+        wrapper.classList.toggle('basket_close');
+        basket.classList.toggle('sticky');
+    }
 }
+
 
 
 window.addEventListener('scroll', () => {
