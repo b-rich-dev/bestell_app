@@ -171,3 +171,50 @@ function myToast() {
 
     setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
 }
+
+
+// const basket = document.querySelector('.basket_wrapper');
+// const content = document.querySelector('.content');
+
+// document.querySelector('#menu_button').addEventListener('click', () => {
+//     basket.classList.toggle('close');
+//     content.classList.toggle('basket_close');
+// });
+const button = document.querySelector('#menu_button');
+
+if (button) {
+    button.addEventListener('click', () => {
+        const basket = document.querySelector('.basket_wrapper');
+        const wrapper = document.querySelector('.content_wrapper');
+
+        if (basket) {
+            basket.classList.toggle('fixed');
+            basket.classList.toggle('close');
+        }
+
+        if (wrapper) {
+            wrapper.classList.toggle('basket_close');
+            basket.classList.toggle('sticky');
+        }
+    });
+}
+
+
+window.addEventListener('scroll', () => {
+    const basket = document.querySelector('.basket_wrapper');
+
+    if (basket) {
+        if (window.scrollY >= 80) {
+            basket.classList.add('scrolled');
+        } else {
+            basket.classList.remove('scrolled');
+        }
+    }
+});
+
+
+
+function renderImpressumContent() {
+    let impressumRef = document.getElementById('impressum')
+    impressumRef.innerHTML += getImpressumContent();
+}

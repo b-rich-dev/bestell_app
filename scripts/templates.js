@@ -1,49 +1,49 @@
 function getMainContent() {
     return `<div id="toast">Deine Bestellung wurde ans Restaurant weitergeleitet!</div>
-                <div class="content_wrapper">
-                    <section id="content" class="content">
-                        <img class="pizza_oven_img" src="./assets/img/pizza_oven.jpg" alt="Pizzaofen">
-                        <div class="pizza_center">
-                            <img class="round_logo" src="./assets/img/pizza_logo.png" alt="Logo">
-                        </div>
-                        <div class="restaurant_info">
-                            <h1>Pizza Paradies</h1>
-                            <a href="">Bewertung (4,5 von 5 Sternen)</a>
-                        </div>
-                        <div class="selection">
-                            <img src="./assets/icon/arrow.png" alt="Pfeil nach rechts">
-                            <a href="#appetizer">Vorspeisen</a>
-                            <a href="#main_course">Hauptgerichte</a>
-                            <a href="#desserts">Desserts</a>
-                        </div>
-                        <img class="food_img" src="./assets/img/carpaccio_1.jpg" alt="Vorspeisen">
-                        <h2 id="appetizer">Vorspeisen</h2>
-                        <div id="appetizer_container" class="food_container">
+            <div class="content_wrapper">
+                <section id="content" class="content">
+                    <img class="pizza_oven_img" src="./assets/img/pizza_oven.jpg" alt="Pizzaofen">
+                    <div class="pizza_center">
+                        <img class="round_logo" src="./assets/img/pizza_logo.png" alt="Logo">
+                    </div>
+                    <div class="restaurant_info">
+                        <h1>Pizza Paradies</h1>
+                        <a href="">Bewertung (4,5 von 5 Sternen)</a>
+                    </div>
+                    <div class="selection">
+                        <img src="./assets/icon/arrow.png" alt="Pfeil nach rechts">
+                        <a href="#appetizer">Vorspeisen</a>
+                        <a href="#main_course">Hauptgerichte</a>
+                        <a href="#desserts">Desserts</a>
+                    </div>
+                    <img class="food_img" src="./assets/img/carpaccio_1.jpg" alt="Vorspeisen">
+                    <h2 id="appetizer">Vorspeisen</h2>
+                    <div id="appetizer_container" class="food_container">
                             
-                        </div>
-                        <img class="food_img" src="./assets/img/pizza_salami.jpg" alt="Pizza">
-                        <h2 id="main_course">Hauptgerichte</h2>
-                        <div id="main_course_container" class="food_container">
+                    </div>
+                    <img class="food_img" src="./assets/img/pizza_salami.jpg" alt="Pizza">
+                    <h2 id="main_course">Hauptgerichte</h2>
+                    <div id="main_course_container" class="food_container">
                         
-                        </div>
-                        <img class="food_img" src="./assets/img/cannoli.jpg" alt="Dessert">
-                        <h2 id="desserts">Desserts</h2>
-                        <div id="desserts_container" class="food_container">
+                    </div>
+                    <img class="food_img" src="./assets/img/cannoli.jpg" alt="Dessert">
+                    <h2 id="desserts">Desserts</h2>
+                    <div id="desserts_container" class="food_container">
                         
+                    </div>
+                </section>
+                <section id="basket_wrapper" class="basket_wrapper">
+                    <div class="basket">
+                        <h1>Warenkorb</h1>
+                        <div id="cart_container" class="cart_container">
+                            <div class="empty_cart">
+                                <img src="./assets/img/bag.png" alt="Warenkorb">
+                                <p>Wähle leckere Gerichte aus der Karte!</p>
+                            </div>    
                         </div>
-                    </section>
-                    <section class="basket_wrapper">
-                        <div class="basket">
-                            <h1>Warenkorb</h1>
-                            <div id="cart_container" class="cart_container">
-                                <div class="empty_cart">
-                                    <img src="./assets/img/bag.png" alt="Warenkorb">
-                                    <p>Wähle leckere Gerichte aus der Karte!</p>
-                                </div>    
-                            </div>
-                        </div>
-                    </section>
-                </div>`;
+                    </div>
+                </section>
+            </div>`;
 }
 
 
@@ -132,8 +132,6 @@ function getCosts(mySubtotal, deliveryFee, totalPrice) {
 
             </div>`;
 }
-
-
 
 
 function getEmptyCart() {
