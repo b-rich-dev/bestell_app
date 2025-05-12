@@ -16,10 +16,11 @@ function renderMainContent() {
 
 function renderFoodSelectionContent() {
     let appetizerContentRef = document.getElementById('appetizer_container');
-    appetizerContentRef.innerHTML = "";
     let mainCourseContentRef = document.getElementById('main_course_container');
-    mainCourseContentRef.innerHTML = "";
     let dessertsContentRef = document.getElementById('desserts_container');
+
+    appetizerContentRef.innerHTML = "";
+    mainCourseContentRef.innerHTML = "";
     dessertsContentRef.innerHTML = "";
 
     for (let i = 0; i < myDishes.length; i++) {
@@ -42,7 +43,7 @@ function increaseAmount(i, j, category) {
     const basket = document.querySelector('.basket_wrapper');
 
     if (basket && basket.classList.contains('close')) {
-        toggleClasses();
+        toggleBasket();
     }
 
     renderCart();
@@ -180,14 +181,10 @@ function myToast() {
 }
 
 
-// const basket = document.querySelector('.basket_wrapper');
-// const content = document.querySelector('.content');
+const basket = document.querySelector('.basket_wrapper');
+const content = document.querySelector('.content');
 
-// document.querySelector('#menu_button').addEventListener('click', () => {
-//     basket.classList.toggle('close');
-//     content.classList.toggle('basket_close');
-// });
-function toggleClasses() {
+function toggleBasket() {
     const basket = document.querySelector('.basket_wrapper');
     const wrapper = document.querySelector('.content_wrapper');
 
@@ -201,7 +198,6 @@ function toggleClasses() {
         basket.classList.toggle('sticky');
     }
 }
-
 
 
 window.addEventListener('scroll', () => {
