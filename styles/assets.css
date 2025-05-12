@@ -114,27 +114,4 @@ body {
   }
 
 
-.cart_container > * {
-    direction: ltr;
-}
 
-.cart_container::-webkit-scrollbar {
-    width: var(--sb-size)
-}
-
-.cart_container::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 2px;
-}
-
-.cart_container::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 2px;
-
-}
-
-@supports not selector(::-webkit-scrollbar) {
-    .cart_container {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-    }
-}

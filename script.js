@@ -181,23 +181,31 @@ function myToast() {
 }
 
 
-const basket = document.querySelector('.basket_wrapper');
-const content = document.querySelector('.content');
+// const basket = document.querySelector('.basket_wrapper');
+// const content = document.querySelector('.content');
 
 function toggleBasket() {
     const basket = document.querySelector('.basket_wrapper');
     const wrapper = document.querySelector('.content_wrapper');
+    const content = document.getElementById('content');
 
     if (basket) {
         basket.classList.toggle('fixed');
         basket.classList.toggle('close');
+        content.classList.toggle('full_content');
     }
 
     if (wrapper) {
         wrapper.classList.toggle('basket_close');
         basket.classList.toggle('sticky');
+        content.classList.toggle('content');
     }
 }
+
+
+
+
+
 
 
 window.addEventListener('scroll', () => {
@@ -211,6 +219,100 @@ window.addEventListener('scroll', () => {
         }
     }
 });
+
+
+
+// const wrapper = document.querySelector('.basket_wrapper');
+// const x = window.matchMedia("(max-width: 840px)")
+
+// function myFunction(x) {
+//     if (x.matches) {
+//         wrapper.classList.add('close');
+//     } else {
+//         wrapper.classList.remove('close');
+//     }
+// }
+
+// myFunction(x);
+
+
+// // Attach listener function on state changes
+// x.addEventListener("change", function() {
+//   myFunction(x);
+// });
+
+
+
+// Diese Funktion wartet, bis das Element im DOM existiert
+function waitForElement(selector, callback) {
+    const observer = new MutationObserver(() => {
+        const element = document.querySelector(selector);
+        if (element) {
+            observer.disconnect();
+            callback(element);
+        }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// Unsere Logik ausführen, wenn basket_wrapper da ist
+waitForElement('#basket_wrapper', function (wrapper) {
+    const basket = wrapper.querySelector('.basket');
+    const content = document.getElementById('content');
+    const x = window.matchMedia("(max-width: 840px)");
+
+    function closeCartIfScreenIsSmall(x) {
+        if (x.matches) {
+            wrapper.classList.add('close');
+            basket.classList.add('close');
+            basket.classList.toggle('fixed');
+            basket.classList.toggle('sticky');
+            content.classList.remove('content');
+            content.classList.add('full_content');
+            addCartButton();
+
+        } else {
+            wrapper.classList.remove('close');
+            basket.classList.remove('close');
+            basket.classList.toggle('fixed');
+            basket.classList.toggle('sticky');
+            content.classList.remove('full_content');
+            content.classList.add('content');
+            removeCartButton()
+        }
+    }
+
+    closeCartIfScreenIsSmall(x);
+
+    x.addEventListener("change", function () {
+        closeCartIfScreenIsSmall(x);
+    });
+});
+
+
+function addCartButton() {
+    const button = document.createElement("button");
+    button.innerText = "Warenkorb";
+    button.id = "cart_button";
+    button.className = "cart_button";
+    button.onclick = toggleBasket;
+
+    const currentDiv = document.getElementById("desserts_container");
+    if (currentDiv) {
+        currentDiv.insertAdjacentElement('afterend', button);
+    }
+}
+
+
+
+
+function removeCartButton() {
+    const element = document.getElementById("cart_button");
+    element.remove();
+}
+
+
 
 
 
