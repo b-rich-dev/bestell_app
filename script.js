@@ -184,25 +184,56 @@ function myToast() {
 // const basket = document.querySelector('.basket_wrapper');
 // const content = document.querySelector('.content');
 
+// function toggleBasket() {
+//     const basket = document.querySelector('.basket_wrapper');
+//     const wrapper = document.querySelector('.content_wrapper');
+//     const content = document.getElementById('content');
+//     const button = document.getElementById("cart_button");
+
+//     if (basket) {
+//         basket.classList.toggle('fixed');
+//         basket.classList.toggle('close');
+//         content.classList.toggle('full_content');
+//     }
+
+//     if (wrapper) {
+//         wrapper.classList.toggle('basket_close');
+//         basket.classList.toggle('sticky');
+//         content.classList.toggle('content');
+//     }
+
+//     if (button) {
+//         button.classList.toggle("cart-hidden");
+//     }
+// }
+
+
 function toggleBasket() {
     const basket = document.querySelector('.basket_wrapper');
     const wrapper = document.querySelector('.content_wrapper');
     const content = document.getElementById('content');
+    const button = document.getElementById("cart_button");
 
-    if (basket) {
-        basket.classList.toggle('fixed');
+    if (button) {
+        button.classList.toggle("basket_wrapper.close");
         basket.classList.toggle('close');
-        content.classList.toggle('full_content');
-    }
+    } else {
+        if (basket) {
+            basket.classList.toggle('fixed');
+            basket.classList.toggle('close');
+            content.classList.toggle('full_content');
+        }
 
-    if (wrapper) {
-        wrapper.classList.toggle('basket_close');
-        basket.classList.toggle('sticky');
-        content.classList.toggle('content');
+        if (wrapper) {
+            wrapper.classList.toggle('basket_close');
+            basket.classList.toggle('sticky');
+            content.classList.toggle('content');
+        }
+
+
+
     }
 }
-
-
 
 
 
@@ -317,6 +348,20 @@ function removeCartButton() {
 }
 
 
+window.addEventListener("scroll", () => {
+    const button = document.getElementById("cart_button");
+    const scrollY = window.scrollY;
+    const viewportHeight = window.innerHeight;
+    const fullHeight = document.body.scrollHeight;
+
+    if (button) {
+        if (scrollY + viewportHeight >= fullHeight - 100) {
+            button.classList.add("shrink");
+        } else {
+            button.classList.remove("shrink");
+        }
+    }
+});
 
 
 

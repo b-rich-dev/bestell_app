@@ -1,0 +1,54 @@
+header {
+    background-color: #FF8000;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+header a {
+    padding-left: 2%;
+}
+
+header a img {
+    height: 60px;
+    width: auto;
+}
+
+header img {
+    height: 24px;
+    width: auto;
+    padding-right: 2%;
+}
+
+header img:hover {
+    cursor: pointer;
+}
+
+footer {
+    background-color: #3D3D3D;
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+footer a {
+    color: #FF8000;
+    text-decoration: none;
+}
+
+footer a img {
+    height: 24px;
+    width: auto;
+}
