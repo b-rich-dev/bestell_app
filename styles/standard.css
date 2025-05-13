@@ -49,3 +49,7 @@ b {
 .d_none {
     display: none;
 }
+
+button:hover {
+    cursor: pointer;
+}

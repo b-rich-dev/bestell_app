@@ -298,10 +298,12 @@ function addCartButton() {
     button.className = "cart_button";
     button.onclick = toggleBasket;
 
-    const currentDiv = document.getElementById("desserts_container");
-    if (currentDiv) {
-        currentDiv.insertAdjacentElement('afterend', button);
-    }
+    // const currentDiv = document.getElementById("desserts_container");
+    // if (currentDiv) {
+    //     currentDiv.insertAdjacentElement('afterend', button);
+    // }
+
+    document.body.appendChild(button);
 }
 
 
@@ -309,7 +311,9 @@ function addCartButton() {
 
 function removeCartButton() {
     const element = document.getElementById("cart_button");
-    element.remove();
+    if (element) {
+        element.remove();
+    }
 }
 
 
