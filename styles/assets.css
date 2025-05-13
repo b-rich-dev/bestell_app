@@ -112,5 +112,62 @@ body {
     }
   }
 
+@media (max-width: 840px) {
+    #toast {
+        top: 40px ;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto ;
+        margin-left: 0 ;
+        z-index: 1000 ;
+    }
 
+    @-webkit-keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: 40px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: 40px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        top: 40px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        top: 40px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+}
 

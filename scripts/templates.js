@@ -12,9 +12,11 @@ function getMainContent() {
                     </div>
                     <div class="selection">
                         <img src="./assets/icon/arrow.png" alt="Pfeil nach rechts">
-                        <a href="#appetizer">Vorspeisen</a>
-                        <a href="#main_course">Hauptgerichte</a>
-                        <a href="#desserts">Desserts</a>
+                        <div class="selection_text">
+                            <a href="#appetizer">Vorspeisen</a>
+                            <a href="#main_course">Hauptgerichte</a>
+                            <a href="#desserts">Desserts</a>
+                        </div>    
                     </div>
                     <img class="food_img" src="./assets/img/carpaccio_1.jpg" alt="Vorspeisen">
                     <h2 id="appetizer">Vorspeisen</h2>

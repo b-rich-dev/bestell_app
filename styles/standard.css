@@ -50,6 +50,10 @@ b {
     display: none;
 }
 
+.flex {
+    display: flex;
+}
+
 button:hover {
     cursor: pointer;
 }

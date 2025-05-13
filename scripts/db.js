@@ -18,7 +18,7 @@ let myDishes = [
             {
                 "name": "Carpaccio",
                 "price": 15.50,
-                "description": "Hauchdünne rohe Rinderfiletscheiben, frischer Rucola und Grana Padano",
+                "description": "Hauchdünnes rohes Rinderfilet, frischer Rucola & Grana Padano",
                 "image": "./assets/img/carpaccio_1.jpg",
                 "amount": 0
             }
