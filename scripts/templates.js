@@ -8,7 +8,7 @@ function getMainContent() {
                     </div>
                     <div class="restaurant_info">
                         <h1>Pizza Paradies</h1>
-                        <a href="">Bewertung (4,5 von 5 Sternen)</a>
+                        <a href="./reviews.html">Bewertung (4,5 von 5 Sternen)</a>
                     </div>
                     <div class="selection">
                         <img src="./assets/icon/arrow.png" alt="Pfeil nach rechts">
@@ -160,4 +160,29 @@ function getImpressumContent() {
                 <p>Bildquellen und Urheberrechtshinweise:</p>
                 <p>Alle Bilder sind von Pixabay, Lizenz: Pixabay License</p>
             </div>`
+}
+
+
+
+function getReviewsContent(index) {
+    return `<div id="review_show"></div>
+            <h1>Bewertungen</h1>
+            <div>Durchschnitt</div>
+            <div id="all_reviews" class="all_reviews">
+            </div>
+            <div>
+                <input id="name_input${index}" onkeydown="checkEnter(event, ${index})" type="text" placeholder="Dein Username...">
+                <input id="comment_input${index}" onkeydown="checkEnter(event, ${index})" type="text" placeholder="Schreibe eine Bewertung...">
+                <button onclick="addNewComment(${index})" id="send" class="send_button">Senden</button>
+            </div>`;
+}
+
+
+function getReviews(index) {
+    return `<div class="reviews">
+                <div id="name" class="name"><h2>${reviews[index].name}</h2></div>
+                <div id="date" class="sate">${reviews[index].date}</div>
+                <div id="rating" class="rating">${reviews[index].rating}</div>
+                <div id="comment" class="comment">${reviews[index].comment}</div>
+            </div>`;
 }

@@ -4,6 +4,21 @@ function init() {
 }
 
 
+
+function getReviewsFromLocalStorage() {
+    let storedReviews = JSON.parse(localStorage.getItem("reviews"));
+
+    if (storedReviews) {
+        reviews = storedReviews;
+    }
+}
+
+
+function saveReviewsToLocalStorage() {
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+}
+
+
 function renderMainContent() {
     let allContentRef = document.getElementById('main_content');
     allContentRef.innerHTML = "";
@@ -273,53 +288,52 @@ window.addEventListener('scroll', () => {
 // });
 
 
+// das war zuletzt
+// function waitForElement(selector, callback) {
+//     // Nur auf der Startseite ausführen
+//     const path = window.location.pathname;
+//     if (path !== "/" && !path.endsWith("/index.html")) {
+//         console.info("waitForElement wird auf dieser Seite nicht ausgeführt:", path);
+//         return;
+//     }
+
+//     // Sicherstellen, dass document.body existiert
+//     if (!document.body) {
+//         console.warn("document.body nicht verfügbar – Observer wird nicht gestartet.");
+//         return;
+//     }
+
+//     const observer = new MutationObserver(() => {
+//         const element = document.querySelector(selector);
+//         if (element) {
+//             observer.disconnect();
+//             callback(element);
+//         }
+//     });
+
+//     observer.observe(document.body, { childList: true, subtree: true });
+// }
+
+
+// function waitForElement(selector, callback) {
+//     // Sicherstellen, dass document.body existiert
+//     if (!document.body) {
+//         console.warn("document.body nicht verfügbar – Observer wird nicht gestartet.");
+//         return;
+//     }
+
+//     const observer = new MutationObserver(() => {
+//         const element = document.querySelector(selector);
+//         if (element) {
+//             observer.disconnect();
+//             callback(element);
+//         }
+//     });
+
+//     observer.observe(document.body, { childList: true, subtree: true });
+// }
 
 // Diese Funktion wartet, bis das Element im DOM existiert
-function waitForElement(selector, callback) {
-    const observer = new MutationObserver(() => {
-        const element = document.querySelector(selector);
-        if (element) {
-            observer.disconnect();
-            callback(element);
-        }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-}
-
-// Unsere Logik ausführen, wenn basket_wrapper da ist
-waitForElement('#basket_wrapper', function (wrapper) {
-    const basket = wrapper.querySelector('.basket');
-    const content = document.getElementById('content');
-    const x = window.matchMedia("(max-width: 840px)");
-
-    function closeCartIfScreenIsSmall(x) {
-        if (x.matches) {
-            wrapper.classList.add('close');
-            basket.classList.add('close');
-            basket.classList.toggle('fixed');
-            basket.classList.toggle('sticky');
-            content.classList.remove('content');
-            content.classList.add('full_content');
-            addCartButton();
-
-        } else {
-            wrapper.classList.remove('close');
-            basket.classList.remove('close');
-            basket.classList.toggle('fixed');
-            basket.classList.toggle('sticky');
-            content.classList.remove('full_content');
-            content.classList.add('content');
-            removeCartButton()
-        }
-    }
-
-    closeCartIfScreenIsSmall(x);
-
-    x.addEventListener("change", function () {
-        closeCartIfScreenIsSmall(x);
-    });
-});
 
 
 function addCartButton() {
@@ -369,3 +383,5 @@ function renderImpressumContent() {
     let impressumRef = document.getElementById('impressum')
     impressumRef.innerHTML += getImpressumContent();
 }
+
+

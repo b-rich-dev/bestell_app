@@ -75,3 +75,29 @@ let myDishes = [
 
 let deliveryFee = myDishes[0].deliveryFee;
 
+let reviews = [
+    {
+        "name": "Anna Müller",
+        "rating": 5,
+        "comment": "Das Essen war einfach köstlich! Besonders die Pizza Margherita hat mir sehr gut geschmeckt.",
+        "date": "01.10.2024"
+    },
+    {
+        "name": "Peter Schmidt",
+        "rating": 4,
+        "comment": "Die Garnelen waren frisch und lecker, aber die Portion hätte etwas größer sein können.",
+        "date": "28.09.2024"
+    },
+    {
+        "name": "Laura Becker",
+        "rating": 5,
+        "comment": "Das Tiramisu war das beste, das ich je gegessen habe! Sehr empfehlenswert.",
+        "date": "25.09.2024"
+    },
+    {
+        "name": "Natalie Fischer",
+        "rating": 5,
+        "comment": "Die Lieferung war schnell und das Essen war noch heiß. Sehr zufrieden!",
+        "date": "23.09.2024"
+    }
+]
