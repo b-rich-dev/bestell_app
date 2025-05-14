@@ -184,7 +184,7 @@ function getReviewsContent() {
             </div>
             
             <div id="all_reviews" class="reviews_list"></div>
-            <div id="review_toast">
+            <div id="review_toast">Bitte alles ausfüllen!</div>
         </div>
     `;
 }
