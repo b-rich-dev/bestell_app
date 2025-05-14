@@ -1,68 +1,103 @@
 function initReviews() {
     getReviewsFromLocalStorage();
     renderReviewsContent();
-    renderReviews();
+    renderAllReviews();
+    headerMenuOff();
+}
+
+
+
+function getReviewsFromLocalStorage() {
+    const storedReviews = localStorage.getItem('reviews');
+    if (storedReviews) {
+        reviews = JSON.parse(storedReviews);
+    }
+}
+
+
+function saveReviewsToLocalStorage() {
+    localStorage.setItem('reviews', JSON.stringify(reviews));
 }
 
 
 function renderReviewsContent() {
-    let reviewsRef = document.getElementById('reviews_content');
-    reviewsRef.innerHTML = "";
-    reviewsRef.innerHTML += getReviewsContent();
-    // for (let i = 0; i < reviews.length; i++) {
-    //     reviewsRef.innerHTML += getReviewsContent(i);
-    // }
+    const reviewsRef = document.getElementById('reviews_content');
+    if (reviewsRef) {
+        reviewsRef.innerHTML = getReviewsContent();
+    }
 }
 
-function renderReviews(index) {
 
-    let reviewsRef = document.getElementById('all_reviews');
-    reviewsRef.innerHTML = "";
-
-    for (let i = 0; i < reviews.length; i++) {
-        reviewsRef.innerHTML += getReviews(i);
+function renderAllReviews() {
+    const reviewsList = document.getElementById('all_reviews');
+    if (reviewsList) {
+        reviewsList.innerHTML = '';
+        reviews.forEach((review, index) => {
+            reviewsList.innerHTML += getSingleReview(index);
+        });
     }
 }
 
 
 function checkEnter(event, index) {
     if (event.key === "Enter") {
-        addNewComment(index);
+        addNewReview(index);
     }
 }
 
 
 
-function addNewComment(index) {
-    let nameInputRef = document.getElementById('name_input' + (index));
-    let commentInputRef = document.getElementById('comment_input' + (index));
-    let nameValue = nameInputRef.value.trim();
-    let commentValue = commentInputRef.value.trim();
+function addNewReview() {
+    const name = document.getElementById('name_input').value.trim();
+    const comment = document.getElementById('comment_input').value.trim();
+    const rating = parseInt(document.getElementById('rating_input').value);
 
-    if (commentValue || nameValue === "") {
-        myReviewToast()
+    if (!name || !comment || isNaN(rating)) {
+        myReviewToast();
         return;
     }
 
-    const newComment = {
-        name: nameValue,
-        comment: commentValue
+    const newReview = {
+        name,
+        comment,
+        rating,
+        date: new Date().toLocaleDateString('de-DE')
     };
 
-    reviews[index].unshift(newComment);
+    reviews.unshift(newReview);
+    saveReviewsToLocalStorage();
+    window.dispatchEvent(new Event('reviewsUpdated'));
+    renderReviewsContent(); // Aktualisiert auch den Durchschnitt
+    renderAllReviews();
 
-    saveToLocalStorage();
-    renderReviews(index)
-    renderBooksTemplate();
-
-    commentInputRef.value = "";
+    // Felder leeren
+    document.getElementById('name_input').value = '';
+    document.getElementById('comment_input').value = '';
 }
+
+function calculateAverageRating() {
+    if (!reviews.length) return '0.0';
+    const sum = reviews.reduce((total, review) => total + review.rating, 0);
+    return (sum / reviews.length).toFixed(1);
+}
+
 
 
 function myReviewToast() {
     let reviewToast = document.getElementById("review_toast");
+    reviewToast.classList.add("review_show");
 
-    reviewToast.className = "review_show";
-
-    setTimeout(function () { reviewToast.className = reviewToast.className.replace("review_", ""); }, 3000);
+    setTimeout(() => {
+        reviewToast.classList.remove("review_show");
+    }, 3000);
 }
+
+
+// function calculateAverageRating() {
+//     if (reviews.length === 0) return 0;
+
+//     const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+//     const average = total / reviews.length;
+
+//     return average.toFixed(1);
+// }

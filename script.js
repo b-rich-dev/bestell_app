@@ -1,21 +1,17 @@
 function init() {
     renderMainContent();
-    renderFoodSelectionContent()
+    renderFoodSelectionContent();
+    renderAverageRatingOnHome(); // Neu hinzufügen
 }
 
-
-
-function getReviewsFromLocalStorage() {
-    let storedReviews = JSON.parse(localStorage.getItem("reviews"));
-
-    if (storedReviews) {
-        reviews = storedReviews;
+function renderAverageRatingOnHome() {
+    getReviewsFromLocalStorage(); // Bewertungen laden
+    const avgRatingElement = document.getElementById('average_rating_home');
+    if (avgRatingElement) {
+        avgRatingElement.innerHTML = `
+            <span>Durchschnittliche Bewertung: <strong>${calculateAverageRating()} / 5</strong> ⭐️</span>
+        `;
     }
-}
-
-
-function saveReviewsToLocalStorage() {
-    localStorage.setItem("reviews", JSON.stringify(reviews));
 }
 
 
@@ -385,3 +381,30 @@ function renderImpressumContent() {
 }
 
 
+// function renderAverageRatingOnHome() {
+//     const avg = calculateAverageRating();
+//     document.getElementById('average_rating_home').innerHTML = `
+//         <h1>Pizza Paradies</h1>
+//         <a href="./reviews.html"><b>Bewertung (${avg} ⭐️ von 5 Sternen)</b></a>`;
+// }
+
+function renderAverageRatingOnHome() {
+    getReviewsFromLocalStorage(); // Bewertungen NEU laden
+    const avg = calculateAverageRating();
+    const element = document.getElementById('average_rating_home');
+    if(element) {
+        element.innerHTML = `
+        <h1>Pizza Paradies</h1>
+        <a href="./reviews.html"><b>Bewertung (${avg} ⭐️ von 5 Sternen)</b></a>`;
+    }
+}
+
+
+window.addEventListener('reviewsUpdated', () => {
+    if(window.location.pathname.includes('index.html')) {
+        renderAverageRatingOnHome();
+    }
+});
+// window.onload = function () {
+//     renderAverageRatingOnHome();
+// };

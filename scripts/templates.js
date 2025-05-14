@@ -6,9 +6,8 @@ function getMainContent() {
                     <div class="pizza_center">
                         <img class="round_logo" src="./assets/img/pizza_logo.png" alt="Logo">
                     </div>
-                    <div class="restaurant_info">
-                        <h1>Pizza Paradies</h1>
-                        <a href="./reviews.html">Bewertung (4,5 von 5 Sternen)</a>
+                    <div id="average_rating_home" class="restaurant_info">
+                        
                     </div>
                     <div class="selection">
                         <img src="./assets/icon/arrow.png" alt="Pfeil nach rechts">
@@ -163,26 +162,57 @@ function getImpressumContent() {
 }
 
 
-
-function getReviewsContent(index) {
-    return `<div id="review_show"></div>
+function getReviewsContent() {
+    return `
+        <div class="reviews_container">
             <h1>Bewertungen</h1>
-            <div>Durchschnitt</div>
-            <div id="all_reviews" class="all_reviews">
+            <div class="average_rating">
+                Durchschnittliche Bewertung: <span id="average_rating">${calculateAverageRating()}</span>/5 ⭐
             </div>
-            <div>
-                <input id="name_input${index}" onkeydown="checkEnter(event, ${index})" type="text" placeholder="Dein Username...">
-                <input id="comment_input${index}" onkeydown="checkEnter(event, ${index})" type="text" placeholder="Schreibe eine Bewertung...">
-                <button onclick="addNewComment(${index})" id="send" class="send_button">Senden</button>
-            </div>`;
+            
+            <div class="add_review">
+                <input type="text" id="name_input" placeholder="Ihr Name">
+                <textarea id="comment_input" placeholder="Ihr Kommentar"></textarea>
+                <select id="rating_input">
+                    <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
+                    <option value="4">⭐ ⭐ ⭐ ⭐</option>
+                    <option value="3">⭐ ⭐ ⭐</option>
+                    <option value="2">⭐ ⭐</option>
+                    <option value="1">⭐</option>
+                </select>
+                <button onclick="addNewReview()">Bewertung absenden</button>
+            </div>
+            
+            <div id="all_reviews" class="reviews_list"></div>
+            <div id="review_toast">
+        </div>
+    `;
 }
 
 
+function getSingleReview(index) {
+    const review = reviews[index];
+    return `
+        <div class="review">
+            <h3>${review.name}</h3>
+            <div class="rating">${'⭐'.repeat(review.rating)}</div>
+            <p>${review.comment}</p>
+            <small>${review.date}</small>
+        </div>
+    `;
+}
+
+
+
+
 function getReviews(index) {
-    return `<div class="reviews">
-                <div id="name" class="name"><h2>${reviews[index].name}</h2></div>
-                <div id="date" class="sate">${reviews[index].date}</div>
-                <div id="rating" class="rating">${reviews[index].rating}</div>
-                <div id="comment" class="comment">${reviews[index].comment}</div>
-            </div>`;
+    const review = reviews[index];
+    return `
+        <div class="review">
+            <h2>${review.name}</h2>
+            <div class="rating">Bewertung: ${'⭐️'.repeat(review.rating)}</div>
+            <div class="date">${review.date}</div>
+            <p class="comment">${review.comment}</p>
+        </div>
+    `;
 }

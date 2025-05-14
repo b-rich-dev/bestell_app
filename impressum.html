@@ -8,6 +8,7 @@
 
     <script src="./script.js" defer></script>
     <script src="./scripts/templates.js"></script>
+    <script src="./scripts/header_menu_off.js"></script>
 
     <link rel="icon" type="image/x-icon" href="./assets/favicon/favicon.ico">
 
@@ -25,12 +26,12 @@
     <link rel="stylesheet" href="./styles/header_footer.css">
 </head>
 
-<body onload="renderImpressumContent()">
+<body onload="renderImpressumContent(), headerMenuOff()">
     <header>
         <a href="./index.html">
             <img id="menu_button" src="./assets/logo/Bestell App- Logo.svg" alt="Bestell App Logo">
         </a>
-        <img src="./assets/icon/menu_icon.png" alt="Menü" onclick="toggleMenu()" class="menu_icon">
+        <img id="header_menu" src="./assets/icon/menu_icon.png" alt="Menü" onclick="toggleMenu()" class="menu_icon">
     </header>
     <main id="impressum"></main>
     <footer>

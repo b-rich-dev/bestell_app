@@ -96,8 +96,8 @@ let reviews = [
     },
     {
         "name": "Natalie Fischer",
-        "rating": 5,
-        "comment": "Die Lieferung war schnell und das Essen war noch heiß. Sehr zufrieden!",
+        "rating": 4,
+        "comment": "Die Lieferung war schnell und das Essen war noch heiß.",
         "date": "23.09.2024"
     }
-]
+];

@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bewertungen</title>
 
-    <script src="./scripts/db.js"></script>
+    <script src="./scripts/db.js" defer></script>
     <script src="./script.js" defer></script>
-    <script src="./scripts/reviews.js"></script>
+    <script src="./scripts/reviews.js" defer></script>
     <script src="./scripts/templates.js"></script>
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/header_menu_off.js"></script>
 
     <link rel="icon" type="image/x-icon" href="./assets/favicon/favicon.ico">
 
@@ -33,7 +35,7 @@
         <a href="./index.html">
             <img id="menu_button" src="./assets/logo/Bestell App- Logo.svg" alt="Bestell App Logo">
         </a>
-        <img src="./assets/icon/menu_icon.png" alt="Menü" onclick="toggleMenu()" class="menu_icon">
+        <img id="header_menu" src="./assets/icon/menu_icon.png" alt="Menü" onclick="toggleMenu()" class="menu_icon">
     </header>
     <main id="reviews_content">
 
