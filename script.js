@@ -1,11 +1,12 @@
 function init() {
     renderMainContent();
     renderFoodSelectionContent();
-    renderAverageRatingOnHome(); // Neu hinzufügen
+    renderAverageRatingOnHome();
 }
 
+
 function renderAverageRatingOnHome() {
-    getReviewsFromLocalStorage(); // Bewertungen laden
+    getReviewsFromLocalStorage();
     const avgRatingElement = document.getElementById('average_rating_home');
     if (avgRatingElement) {
         avgRatingElement.innerHTML = `
@@ -25,26 +26,26 @@ function renderMainContent() {
 }
 
 
-function renderFoodSelectionContent() {
-    let appetizerContentRef = document.getElementById('appetizer_container');
-    let mainCourseContentRef = document.getElementById('main_course_container');
-    let dessertsContentRef = document.getElementById('desserts_container');
-
-    appetizerContentRef.innerHTML = "";
-    mainCourseContentRef.innerHTML = "";
-    dessertsContentRef.innerHTML = "";
-
+function renderCategory(container, category, getContentFn) {
+    container.innerHTML = "";
     for (let i = 0; i < myDishes.length; i++) {
-        for (let j = 0; j < myDishes[i].appetizer.length; j++) {
-            appetizerContentRef.innerHTML += getAppetizerContent(i, j);
-        }
-        for (let j = 0; j < myDishes[i].mainCourse.length; j++) {
-            mainCourseContentRef.innerHTML += getMainCourseContent(i, j);
-        }
-        for (let j = 0; j < myDishes[i].desserts.length; j++) {
-            dessertsContentRef.innerHTML += getDessertsContent(i, j);
+        for (let j = 0; j < myDishes[i][category].length; j++) {
+            container.innerHTML += getContentFn(i, j);
         }
     }
+}
+
+
+function renderFoodSelectionContent() {
+    const containers = {
+        appetizer: document.getElementById('appetizer_container'),
+        mainCourse: document.getElementById('main_course_container'),
+        desserts: document.getElementById('desserts_container')
+    };
+
+    renderCategory(containers.appetizer, 'appetizer', getAppetizerContent);
+    renderCategory(containers.mainCourse, 'mainCourse', getMainCourseContent);
+    renderCategory(containers.desserts, 'desserts', getDessertsContent);
 }
 
 
@@ -83,6 +84,7 @@ function addOne(dishName) {
     }
 }
 
+
 function removeOne(dishName) {
     for (let i = 0; i < myDishes.length; i++) {
         let categories = ['appetizer', 'mainCourse', 'desserts'];
@@ -103,7 +105,6 @@ function removeOne(dishName) {
             }
         }
     }
-
 }
 
 
@@ -152,34 +153,30 @@ function sendOrder() {
 }
 
 
+function calculatePrices(dishes) {
+    const subtotal = dishes.reduce((sum, dish) => sum + (dish.amount * dish.price), 0);
+    return { subtotal, total: subtotal + deliveryFee };
+}
+
+
+function getValidDishes() {
+    return myDishes.flatMap(group =>
+        ['appetizer', 'mainCourse', 'desserts'].flatMap(category =>
+            group[category].filter(dish => dish.amount > 0)
+        )
+    );
+}
+
+
 function renderCart() {
-    let cartContent = "";
-    let mySubtotal = 0;
-    let totalPrice = 0;
+    const validDishes = getValidDishes();
+    const { subtotal, total } = calculatePrices(validDishes);
+    const cartContainer = document.getElementById('cart_container');
 
-    for (let i = 0; i < myDishes.length; i++) {
-        let dishGroup = myDishes[i];
-        let categories = ['appetizer', 'mainCourse', 'desserts'];
+    cartContainer.innerHTML =
+        validDishes.map(getSelectedDishes).join('') + getCosts(subtotal, deliveryFee, total);
 
-        for (let c = 0; c < categories.length; c++) {
-            let category = categories[c];
-            let dishes = dishGroup[category];
-
-            for (let j = 0; j < dishes.length; j++) {
-                let dish = dishes[j];
-                if (dish.amount > 0) {
-                    cartContent += getSelectedDishes(dish);
-                    mySubtotal += dish.amount * dish.price;
-                    totalPrice = mySubtotal + deliveryFee;
-                }
-            }
-        }
-    }
-
-    cartContent += getCosts(mySubtotal, deliveryFee, totalPrice);
-    document.getElementById('cart_container').innerHTML = cartContent;
-    const container = document.querySelector('.cart_container');
-    container.scrollTop = container.scrollHeight;
+    cartContainer.scrollTop = cartContainer.scrollHeight;
 }
 
 
@@ -190,33 +187,6 @@ function myToast() {
 
     setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
 }
-
-
-// const basket = document.querySelector('.basket_wrapper');
-// const content = document.querySelector('.content');
-
-// function toggleBasket() {
-//     const basket = document.querySelector('.basket_wrapper');
-//     const wrapper = document.querySelector('.content_wrapper');
-//     const content = document.getElementById('content');
-//     const button = document.getElementById("cart_button");
-
-//     if (basket) {
-//         basket.classList.toggle('fixed');
-//         basket.classList.toggle('close');
-//         content.classList.toggle('full_content');
-//     }
-
-//     if (wrapper) {
-//         wrapper.classList.toggle('basket_close');
-//         basket.classList.toggle('sticky');
-//         content.classList.toggle('content');
-//     }
-
-//     if (button) {
-//         button.classList.toggle("cart-hidden");
-//     }
-// }
 
 
 function toggleBasket() {
@@ -234,20 +204,13 @@ function toggleBasket() {
             basket.classList.toggle('close');
             content.classList.toggle('full_content');
         }
-
         if (wrapper) {
             wrapper.classList.toggle('basket_close');
             basket.classList.toggle('sticky');
             content.classList.toggle('content');
         }
-
-
-
     }
 }
-
-
-
 
 
 window.addEventListener('scroll', () => {
@@ -263,75 +226,6 @@ window.addEventListener('scroll', () => {
 });
 
 
-
-// const wrapper = document.querySelector('.basket_wrapper');
-// const x = window.matchMedia("(max-width: 840px)")
-
-// function myFunction(x) {
-//     if (x.matches) {
-//         wrapper.classList.add('close');
-//     } else {
-//         wrapper.classList.remove('close');
-//     }
-// }
-
-// myFunction(x);
-
-
-// // Attach listener function on state changes
-// x.addEventListener("change", function() {
-//   myFunction(x);
-// });
-
-
-// das war zuletzt
-// function waitForElement(selector, callback) {
-//     // Nur auf der Startseite ausführen
-//     const path = window.location.pathname;
-//     if (path !== "/" && !path.endsWith("/index.html")) {
-//         console.info("waitForElement wird auf dieser Seite nicht ausgeführt:", path);
-//         return;
-//     }
-
-//     // Sicherstellen, dass document.body existiert
-//     if (!document.body) {
-//         console.warn("document.body nicht verfügbar – Observer wird nicht gestartet.");
-//         return;
-//     }
-
-//     const observer = new MutationObserver(() => {
-//         const element = document.querySelector(selector);
-//         if (element) {
-//             observer.disconnect();
-//             callback(element);
-//         }
-//     });
-
-//     observer.observe(document.body, { childList: true, subtree: true });
-// }
-
-
-// function waitForElement(selector, callback) {
-//     // Sicherstellen, dass document.body existiert
-//     if (!document.body) {
-//         console.warn("document.body nicht verfügbar – Observer wird nicht gestartet.");
-//         return;
-//     }
-
-//     const observer = new MutationObserver(() => {
-//         const element = document.querySelector(selector);
-//         if (element) {
-//             observer.disconnect();
-//             callback(element);
-//         }
-//     });
-
-//     observer.observe(document.body, { childList: true, subtree: true });
-// }
-
-// Diese Funktion wartet, bis das Element im DOM existiert
-
-
 function addCartButton() {
     const button = document.createElement("button");
     button.innerText = "Warenkorb";
@@ -339,15 +233,8 @@ function addCartButton() {
     button.className = "cart_button";
     button.onclick = toggleBasket;
 
-    // const currentDiv = document.getElementById("desserts_container");
-    // if (currentDiv) {
-    //     currentDiv.insertAdjacentElement('afterend', button);
-    // }
-
     document.body.appendChild(button);
 }
-
-
 
 
 function removeCartButton() {
@@ -374,37 +261,24 @@ window.addEventListener("scroll", () => {
 });
 
 
-
 function renderImpressumContent() {
     let impressumRef = document.getElementById('impressum')
     impressumRef.innerHTML += getImpressumContent();
 }
 
 
-// function renderAverageRatingOnHome() {
-//     const avg = calculateAverageRating();
-//     document.getElementById('average_rating_home').innerHTML = `
-//         <h1>Pizza Paradies</h1>
-//         <a href="./reviews.html"><b>Bewertung (${avg} ⭐️ von 5 Sternen)</b></a>`;
-// }
-
 function renderAverageRatingOnHome() {
-    getReviewsFromLocalStorage(); // Bewertungen NEU laden
+    getReviewsFromLocalStorage();
     const avg = calculateAverageRating();
     const element = document.getElementById('average_rating_home');
-    if(element) {
-        element.innerHTML = `
-        <h1>Pizza Paradies</h1>
-        <a href="./reviews.html"><b>Bewertung (${avg} ⭐️ von 5 Sternen)</b></a>`;
+    if (element) {
+        element.innerHTML = getAverageRatingOnHome(avg);
     }
 }
 
 
 window.addEventListener('reviewsUpdated', () => {
-    if(window.location.pathname.includes('index.html')) {
+    if (window.location.pathname.includes('index.html')) {
         renderAverageRatingOnHome();
     }
 });
-// window.onload = function () {
-//     renderAverageRatingOnHome();
-// };

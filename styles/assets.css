@@ -1,42 +1,25 @@
 #toast {
     visibility: hidden;
-    /* Hidden by default. Visible on click */
     min-width: 250px;
-    /* Set a default minimum width */
     max-width: 300px;
     margin-left: -125px;
-    /* Divide value of min-width by 2 */
     background-color: #FF8000;
-    /* Black background color */
-    color:  #FFFFFF;
-    /* White text color */
+    color: #FFFFFF;
     text-align: center;
-    /* Centered text */
     border-radius: 8px;
-    /* Rounded borders */
     padding: 16px;
-    /* Padding */
     position: fixed;
-    /* Sit on top of the screen */
     z-index: 1;
-    /* Add a z-index if needed */
     right: 0px;
-    /* Center the snackbar */
     top: 404px;
-    /* 30px from the bottom */
 }
 
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
 #toast.show {
     visibility: visible;
-    /* Show the snackbar */
-    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-    However, delay the fade out process for 2.5 seconds */
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.6s;
     animation: fadein 0.5s, fadeout 0.5s 2.6s;
 }
 
-/* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
     from {
         top: 0;
@@ -89,85 +72,83 @@ body {
     --sb-track-color: #eae4e3;
     --sb-thumb-color: #ff8000;
     --sb-size: 10px;
-  }
-  
-  body::-webkit-scrollbar {
+}
+
+body::-webkit-scrollbar {
     width: var(--sb-size)
-  }
-  
-  body::-webkit-scrollbar-track {
+}
+
+body::-webkit-scrollbar-track {
     background: var(--sb-track-color);
     border-radius: 0;
-  }
-  
-  body::-webkit-scrollbar-thumb {
+}
+
+body::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
     border-radius: 0;
-  }
-  
-  @supports not selector(::-webkit-scrollbar) {
+}
+
+@supports not selector(::-webkit-scrollbar) {
     body {
-      scrollbar-color: var(--sb-thumb-color)
-                       var(--sb-track-color);
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     }
-  }
+}
 
 @media (max-width: 840px) {
     #toast {
-        top: 40px ;
+        top: 40px;
         left: 50%;
         transform: translateX(-50%);
-        right: auto ;
-        margin-left: 0 ;
-        z-index: 1000 ;
+        right: auto;
+        margin-left: 0;
+        z-index: 1000;
     }
 
     @-webkit-keyframes fadein {
-    from {
-        top: 0;
-        opacity: 0;
+        from {
+            top: 0;
+            opacity: 0;
+        }
+
+        to {
+            top: 40px;
+            opacity: 1;
+        }
     }
 
-    to {
-        top: 40px;
-        opacity: 1;
+    @keyframes fadein {
+        from {
+            top: 0;
+            opacity: 0;
+        }
+
+        to {
+            top: 40px;
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes fadeout {
+        from {
+            top: 40px;
+            opacity: 1;
+        }
+
+        to {
+            top: 0;
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeout {
+        from {
+            top: 40px;
+            opacity: 1;
+        }
+
+        to {
+            top: 0;
+            opacity: 0;
+        }
     }
 }
-
-@keyframes fadein {
-    from {
-        top: 0;
-        opacity: 0;
-    }
-
-    to {
-        top: 40px;
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes fadeout {
-    from {
-        top: 40px;
-        opacity: 1;
-    }
-
-    to {
-        top: 0;
-        opacity: 0;
-    }
-}
-
-@keyframes fadeout {
-    from {
-        top: 40px;
-        opacity: 1;
-    }
-
-    to {
-        top: 0;
-        opacity: 0;
-    }
-}
-}
-

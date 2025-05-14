@@ -45,21 +45,20 @@
     text-decoration: underline;
 }
 
-/* Responsive Anpassungen */
 @media (max-width: 768px) {
     .impressum_container {
         padding: 30px 15px;
         margin: 0 15px;
     }
-    
+
     .impressum_container h1 {
         font-size: 2rem;
     }
-    
+
     .impressum_container h2 {
         font-size: 1.3rem;
     }
-    
+
     .impressum_container p {
         font-size: 1rem;
     }
@@ -71,7 +70,7 @@
         margin: 0 10px;
         border-radius: 8px;
     }
-    
+
     .impressum_container h1 {
         font-size: 1.8rem;
         margin-bottom: 1.5rem;

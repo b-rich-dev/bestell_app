@@ -10,35 +10,24 @@ function waitForElement(selector, callback) {
     observer.observe(document.body, { childList: true, subtree: true });
 }
 
-waitForElement('#basket_wrapper', function (wrapper) {
-    const basket = wrapper.querySelector('.basket');
-    const content = document.getElementById('content');
+
+function handleScreenSizeChange(x, wrapper, basket, content) {
+    const isSmall = x.matches;
+    wrapper.classList.toggle('close', isSmall);
+    basket.classList.toggle('close', isSmall);
+    basket.classList.toggle('fixed', !isSmall);
+    basket.classList.toggle('sticky', !isSmall);
+    content.classList.toggle('full_content', isSmall);
+    content.classList.toggle('content', !isSmall);
+    isSmall ? addCartButton() : removeCartButton();
+}
+
+waitForElement('#basket_wrapper', (wrapper) => {
     const x = window.matchMedia("(max-width: 840px)");
-
-    function closeCartIfScreenIsSmall(x) {
-        if (x.matches) {
-            wrapper.classList.add('close');
-            basket.classList.add('close');
-            basket.classList.toggle('fixed');
-            basket.classList.toggle('sticky');
-            content.classList.remove('content');
-            content.classList.add('full_content');
-            addCartButton();
-
-        } else {
-            wrapper.classList.remove('close');
-            basket.classList.remove('close');
-            basket.classList.toggle('fixed');
-            basket.classList.toggle('sticky');
-            content.classList.remove('full_content');
-            content.classList.add('content');
-            removeCartButton()
-        }
-    }
-
-    closeCartIfScreenIsSmall(x);
-
-    x.addEventListener("change", function () {
-        closeCartIfScreenIsSmall(x);
-    });
+    const elements = {
+        basket: wrapper.querySelector('.basket'),
+        content: document.getElementById('content')
+    };
+    handleScreenSizeChange(x, wrapper, elements.basket, elements.content);
+    x.addEventListener("change", () => handleScreenSizeChange(x, wrapper, elements.basket, elements.content));
 });

@@ -130,7 +130,6 @@ function getCosts(mySubtotal, deliveryFee, totalPrice) {
                 <div class="order">
                     <button onclick="sendOrder()">Bestellen!</button>
                 </div>
-
             </div>`;
 }
 
@@ -203,8 +202,6 @@ function getSingleReview(index) {
 }
 
 
-
-
 function getReviews(index) {
     const review = reviews[index];
     return `
@@ -215,4 +212,11 @@ function getReviews(index) {
             <p class="comment">${review.comment}</p>
         </div>
     `;
+}
+
+
+function getAverageRatingOnHome(avg) {
+    return `
+        <h1>Pizza Paradies</h1>
+        <a href="./reviews.html"><b>Bewertung (${avg} ⭐️ von 5 Sternen)</b></a>`;
 }
