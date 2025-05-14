@@ -1,43 +1,81 @@
+/* impressum.css - Angepasst an den Stil der Reviews-Seite */
+
 .impressum_container {
-    width: 100%;
-    padding-left: 10%;
-    padding-right: 10%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-
-    color: black;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 24px;
+    padding: 40px 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #333333;
+    line-height: 1.6;
 }
 
 .impressum_container h1 {
-    color: black;
-    font-size: 52px;
-    font-weight: 900;
-    padding: 16px 0 16px 0;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f1f1f1;
+    text-align: center;
+}
+
+.impressum_container h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
 }
 
 .impressum_container p {
-    padding: 16px 0 16px 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    text-align: left;
 }
 
 .impressum_container a {
+    color: #3498db;
     text-decoration: none;
-    color: black;
+    transition: color 0.3s ease;
+    font-weight: 500;
 }
 
 .impressum_container a:hover {
-    color: #1f7594;
+    color: #2980b9;
+    text-decoration: underline;
 }
 
-@media (max-width: 600px) {
-
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
     .impressum_container {
-        text-align: center;
+        padding: 30px 15px;
+        margin: 0 15px;
     }
-
+    
     .impressum_container h1 {
-        font-size: 36px;
+        font-size: 2rem;
+    }
+    
+    .impressum_container h2 {
+        font-size: 1.3rem;
+    }
+    
+    .impressum_container p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .impressum_container {
+        padding: 20px 10px;
+        margin: 0 10px;
+        border-radius: 8px;
+    }
+    
+    .impressum_container h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
     }
 }
