@@ -68,76 +68,20 @@ function decreaseAmount(i, j, category) {
 }
 
 
-function addOne(dishName) {
+function forEachDish(callback) {
+    let categories = ['appetizer', 'mainCourse', 'desserts'];
     for (let i = 0; i < myDishes.length; i++) {
-        let categories = ['appetizer', 'mainCourse', 'desserts'];
         for (let c = 0; c < categories.length; c++) {
             let dishes = myDishes[i][categories[c]];
             for (let j = 0; j < dishes.length; j++) {
-                if (dishes[j].name === dishName) {
-                    dishes[j].amount++;
-                    renderCart();
-                    return;
-                }
+                callback(dishes[j]);
             }
         }
     }
 }
 
 
-function removeOne(dishName) {
-    for (let i = 0; i < myDishes.length; i++) {
-        let categories = ['appetizer', 'mainCourse', 'desserts'];
-        for (let c = 0; c < categories.length; c++) {
-            let dishes = myDishes[i][categories[c]];
-            for (let j = 0; j < dishes.length; j++) {
-                if (dishes[j].name === dishName) {
-                    if (dishes[j].amount > 0) {
-                        dishes[j].amount--;
-                        if (isCartEmpty()) {
-                            document.getElementById('cart_container').innerHTML = getEmptyCart();
-                        } else {
-                            renderCart();
-                        }
-                    }
-                    return;
-                }
-            }
-        }
-    }
-}
-
-
-function isCartEmpty() {
-    for (let i = 0; i < myDishes.length; i++) {
-        let categories = ['appetizer', 'mainCourse', 'desserts'];
-        for (let c = 0; c < categories.length; c++) {
-            let dishes = myDishes[i][categories[c]];
-            for (let j = 0; j < dishes.length; j++) {
-                if (dishes[j].amount > 0) {
-                    return false;
-                }
-            }
-        }
-    }
-    return true;
-}
-
-
-function removeAllFromDish(dishName) {
-    for (let i = 0; i < myDishes.length; i++) {
-        let categories = ['appetizer', 'mainCourse', 'desserts'];
-        for (let c = 0; c < categories.length; c++) {
-            let dishes = myDishes[i][categories[c]];
-            for (let j = 0; j < dishes.length; j++) {
-                if (dishes[j].name === dishName) {
-                    if (dishes[j].amount > 0) {
-                        dishes[j].amount = 0;
-                    }
-                }
-            }
-        }
-    }
+function updateCart() {
     if (isCartEmpty()) {
         document.getElementById('cart_container').innerHTML = getEmptyCart();
     } else {
@@ -146,17 +90,50 @@ function removeAllFromDish(dishName) {
 }
 
 
-function sendOrder() {
-    for (let i = 0; i < myDishes.length; i++) {
-        let categories = ['appetizer', 'mainCourse', 'desserts'];
-        for (let c = 0; c < categories.length; c++) {
-            let dishes = myDishes[i][categories[c]];
-            for (let j = 0; j < dishes.length; j++) {
-                dishes[j].amount = 0;
-                myToast();
-            }
+function addOne(dishName) {
+    forEachDish(dish => {
+        if (dish.name === dishName) {
+            dish.amount++;
+            renderCart();
         }
-    }
+    });
+}
+
+
+function removeOne(dishName) {
+    forEachDish(dish => {
+        if (dish.name === dishName && dish.amount > 0) {
+            dish.amount--;
+            updateCart();
+        }
+    });
+}
+
+
+function removeAllFromDish(dishName) {
+    forEachDish(dish => {
+        if (dish.name === dishName && dish.amount > 0) {
+            dish.amount = 0;
+        }
+    });
+    updateCart();
+}
+
+
+function isCartEmpty() {
+    let empty = true;
+    forEachDish(dish => {
+        if (dish.amount > 0) empty = false;
+    });
+    return empty;
+}
+
+
+function sendOrder() {
+    forEachDish(dish => {
+        dish.amount = 0;
+    });
+    myToast();
     document.getElementById('cart_container').innerHTML = getEmptyCart();
 }
 
@@ -197,6 +174,24 @@ function myToast() {
 }
 
 
+function toggleButtonState(button, basket) {
+    button.classList.toggle("close");
+    basket.classList.toggle("close");
+}
+
+
+function toggleBasketState(basket, wrapper, content) {
+    if (basket && content && wrapper) {
+        basket.classList.toggle('fixed');
+        basket.classList.toggle('close');
+        basket.classList.toggle('sticky');
+        content.classList.toggle('full_content');
+        content.classList.toggle('content');
+        wrapper.classList.toggle('basket_close');
+    }
+}
+
+
 function toggleBasket() {
     const basket = document.querySelector('.basket_wrapper');
     const wrapper = document.querySelector('.content_wrapper');
@@ -204,19 +199,9 @@ function toggleBasket() {
     const button = document.getElementById("cart_button");
 
     if (button) {
-        button.classList.toggle("basket_wrapper.close");
-        basket.classList.toggle('close');
+        toggleButtonState(button, basket);
     } else {
-        if (basket) {
-            basket.classList.toggle('fixed');
-            basket.classList.toggle('close');
-            content.classList.toggle('full_content');
-        }
-        if (wrapper) {
-            wrapper.classList.toggle('basket_close');
-            basket.classList.toggle('sticky');
-            content.classList.toggle('content');
-        }
+        toggleBasketState(basket, wrapper, content);
     }
 }
 
