@@ -124,17 +124,25 @@ function isCartEmpty() {
 }
 
 
-function deleteAllFromCart() {
+function removeAllFromDish(dishName) {
     for (let i = 0; i < myDishes.length; i++) {
         let categories = ['appetizer', 'mainCourse', 'desserts'];
         for (let c = 0; c < categories.length; c++) {
             let dishes = myDishes[i][categories[c]];
             for (let j = 0; j < dishes.length; j++) {
-                dishes[j].amount = 0;
+                if (dishes[j].name === dishName) {
+                    if (dishes[j].amount > 0) {
+                        dishes[j].amount = 0;
+                    }
+                }
             }
         }
     }
-    document.getElementById('cart_container').innerHTML = getEmptyCart();
+    if (isCartEmpty()) {
+        document.getElementById('cart_container').innerHTML = getEmptyCart();
+    } else {
+        renderCart();
+    }
 }
 
 

@@ -107,7 +107,7 @@ function getSelectedDishes(dish) {
                     <p>${dish.amount}x</p>
                     <img onclick="addOne('${dish.name}')" class="calc_icon" src="./assets/icon/plus.png" alt="Plus">
                     <p>${(dish.amount * dish.price).toFixed(2)}€</p>
-                    <img onclick="deleteAllFromCart()" class="trash_icon" class="test" src="./assets/icon/trash.png" alt="Papierkorb">
+                    <img onclick="removeAllFromDish('${ dish.name }')" class="trash_icon" class="test" src="./assets/icon/trash.png" alt="Papierkorb">
                 </div>
             </div>`;
 }
